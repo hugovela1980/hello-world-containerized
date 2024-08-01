@@ -5,15 +5,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello World</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+        }
+        
+        #container {
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
             height: 100vh;
+            width: 100vw;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+        }
+        
+        .world_pic {
+            background-image: url("./moon.jpg");
+        }
+        
+        .universe_pic {
+            background-image: url("./universe.jpg");
+        }
+
+        #hello_select {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #f4f4f4;
+            width: 30rem;
+            position: absolute;
+            top: 3vh;
+            left: calc(50vw - 15rem);
+            font-size: 1.1rem;
+            text-align: center;
+            padding: 0.5rem;
+        }
+
+        option {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #f4f4f4;
+            padding: 0.5rem;
+        }
+
+        #title {
+            font-size: 5rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #f4f4f4;
+            padding: 1rem 2rem;
         }
     </style>
 </head>
 <body>
-    <h1>Hello World</h1>
+    <select name="hello" id="hello_select">
+        <option value="world">World</option>
+        <option value="universe">Universe</option>
+        <option value="TRACE">TRACE</option>            
+        <option value="DEBUG">DEBUG</option>        
+        <option value="INFO">INFO</option>            
+        <option value="WARN">WARN</option>        
+        <option value="ERROR">ERROR</option>            
+        <option value="FATAL">FATAL</option>            
+        <option value="CUSTOM">CUSTOM</option>            
+    </select>
+
+    <div class="world_pic" id="container">
+        <h1 id="title"><span id="title_text">Hello World</span></h1>
+    </div>
+    
+    <script>
+
+        const titleEl = document.getElementById("title");
+        const titleTextEl = document.getElementById("title_text");
+        const helloSelectEl = document.getElementById("hello_select");
+        const containerEl = document.getElementById("container");
+
+        let logLevel;
+        let mode = 'world';
+        const setMode = () => {
+            if (mode === 'world') {
+                containerEl.classList.remove("universe_pic");
+                containerEl.classList.add("world_pic");
+                titleTextEl.textContent = 'Hello World';
+            } else if (mode === 'universe') {
+                containerEl.classList.remove("world_pic");
+                containerEl.classList.add("universe_pic");
+                titleTextEl.textContent = 'Hello Universe';
+            }
+        }
+
+        helloSelectEl.addEventListener("change", async () => {
+            if (helloSelectEl.value === "world" || helloSelectEl.value === "universe") {
+                mode = helloSelectEl.value;
+                setMode();
+            } else {
+                const response = await fetch("http://localhost:5000/log", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: `This is a ${helloSelectEl.value} level log message`,
+                        level: helloSelectEl.value
+                    })
+                });
+                const data = await response.json();
+                console.log(data.status);
+            }
+        });
+        
+        window.addEventListener('load', async () => {
+            setMode();
+            helloSelectEl.focus();
+            const response = await fetch("http://localhost:5000/log", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: "Client side landing page loaded",
+                    level: "INFO"
+                })
+            });
+            const data = await response.json();
+            console.log(data.status);
+        });
+        
+    </script>
+    
 </body>
 </html>
