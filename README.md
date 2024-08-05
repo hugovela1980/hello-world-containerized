@@ -1,8 +1,7 @@
 # hello-world-containerized
 
-## How to run the app after cloning the repository and running a container
-* Navigate to the root folder of the project in the terminal.
-* Run the command ***npm run dev*** to start the server.  You should see a log message that says "Hello Universe" and another one that says "server started...".
+## After running the container...
+* ...you should see a log message that says "Hello Universe" and another one that says "Server started and listening on port 5000".
 * Navigate over to ***http://localhost:5000*** to see the landing page in the browser.
 
 ## How it works
@@ -15,4 +14,4 @@
   * WARN --> Will make the server log a warn level log to the terminal and to the ***requests.log*** file.
   * ERROR --> Will make the server log an error level log to the terminal and to the ***requests.log*** file.
   * CUSTOM --> Will make the server log a custom level log to the terminal.
-* The server will only write WARN and ERROR level logs to a file called requests.log inside of the logs folder.  The logger is configured to suppress lower level logs.
+* The server will only write ERROR, FATAL and CUSTOM level logs to a file called requests.log inside of the logs folder.  The logger is configured to suppress lower level logs.
