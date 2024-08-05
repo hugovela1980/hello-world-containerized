@@ -8,27 +8,29 @@ const loggerOptions = {
         level: (label) => {
             return { level: label.toUpperCase() };
         }
-    }
+    },
+    timestamp: pino.stdTimeFunctions.isoTime
 }
 
 const loggerDest = pino.transport({
     target: 'pino-pretty',
+    options: { translateTime: 'SYS:standard' }
 })
 
 const logger = pino(loggerOptions, loggerDest);
 
 const requestLoggerOptions = {
-    customLevels: { custom: 35 },
+    customLevels: { custom: 70 },
     level: 'error',
     redact: {
         paths: [ 'hostname' ]
-    }
+    } 
 };
 
 const requestLoggerDest = pino.transport({
     targets: [
         {
-            target: 'pino-pretty',
+            target: 'pino/file',
             options: {
                 destination: './logs/requests.log',
                 mkdir: true,
