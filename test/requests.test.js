@@ -1,0 +1,1 @@
+const { handleLogRequests, getFileRequestData } = require('../app/backend/requests');

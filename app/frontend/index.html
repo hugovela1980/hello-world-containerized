@@ -104,38 +104,29 @@
                 mode = helloSelectEl.value;
                 setMode();
             } else {
-                const response = await fetch("http://localhost:5000/log", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        message: `This is a ${helloSelectEl.value} level log message`,
-                        level: helloSelectEl.value
-                    })
-                });
-                const data = await response.json();
-                console.log(data.status);
+                const url = 'http://localhost:5000/log';
+                const method = 'POST';
+                const headers = { 'Content-Type': 'application/json' };
+                const body = JSON.stringify({ message: `This is a ${helloSelectEl.value} level log message`, level: helloSelectEl.value });
+                makeHttpRequest({  url, method, headers, body });;
             }
         });
         
         window.addEventListener('load', async () => {
             setMode();
             helloSelectEl.focus();
-            const response = await fetch("http://localhost:5000/log", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    message: "Client side landing page loaded",
-                    level: "INFO"
-                })
-            });
-            const data = await response.json();
-            console.log(data.status);
+
+            const url = 'http://localhost:5000/log';
+            const method = 'POST';
+            const headers = { 'Content-Type': 'application/json' };
+            const body = JSON.stringify({ message: 'Client side landing page loaded', level: 'INFO' });
+            makeHttpRequest({ url, method, headers, body });
         });
         
+        const makeHttpRequest = async ({ url, method, headers, body }) => {
+            const response = await fetch(url, { method, headers, body });
+            return console.log(await response.json());
+        }
     </script>
     
 </body>
