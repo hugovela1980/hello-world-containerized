@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#container {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.world_pic {
+    background-image: url("../img/moon.jpg");
+}
+
+.universe_pic {
+    background-image: url("../img/universe.jpg");
+}
+
+#hello_select {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #f4f4f4;
+    width: 30rem;
+    position: absolute;
+    top: 3vh;
+    left: calc(50vw - 15rem);
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+option {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #f4f4f4;
+    padding: 0.5rem;
+}
+
+#title {
+    font-size: 5rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #f4f4f4;
+    padding: 1rem 2rem;
+}

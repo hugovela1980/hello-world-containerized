@@ -3,16 +3,17 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "test": "jest --verbose",
-    "start": "node app/backend/server.js",
-    "dev": "nodemon -L --watch app --watch test app/backend/server.js -e js,html",
-    "testing": "nodemon -L --watch app --watch test test/sum.test.js -e js,html"
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "start": "node server.js",
+    "dev": "nodemon -L server.js -e js,html"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "delay": "^6.0.0",
     "express": "^4.19.2",
     "pino": "^9.3.2",
     "pino-http": "^10.2.0",
