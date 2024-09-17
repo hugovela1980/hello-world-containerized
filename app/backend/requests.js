@@ -6,7 +6,7 @@ const { writeLogsToConsole } = require('./libs/write-logs-to-console');
 const { requestType } = require('./libs/check-request-type');
 const { logger, httpLogger } = require('./loggerSetup');
 
-const handleAllRequests = (req, res) => {
+const handleRequests = (req, res) => {
   // httpLogger(req, res);
   
   if (requestType(req) === 'logging') handleLogRequests(req, res, { logger, httpLogger });
@@ -49,7 +49,7 @@ const serveStaticFiles = (req, res, { logger, httpLogger }) => {
 
 
 module.exports = {
-  handleAllRequests,
+  handleRequests,
   handleLogRequests,
   serveStaticFiles
 };

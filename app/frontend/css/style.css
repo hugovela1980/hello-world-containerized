@@ -6,6 +6,8 @@
 
 body {
     font-family:Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #333;
+    color: #f4f4f4;
 }
 
 #container {
@@ -51,4 +53,41 @@ option {
     background-color: rgba(0, 0, 0, 0.5);
     color: #f4f4f4;
     padding: 1rem 2rem;
+}
+
+.bookmarks_container {
+    height: 25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.bookmarks_container h1 {
+    font-size: 2.5rem;
+}
+
+.bookmarks_container .bookmarks_btn {
+    font-size: 1.5rem;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 12px 24px;
+    border-radius: 5px;
+}
+
+.bookmarks_container input {
+    width: 400px;
+    height: 50px;
+    padding: 0 24px;
+    font-size: 1.5rem;
+}
+
+.bookmarks_container .submit_btn {
+    font-size: 1.25rem;
+    background-color: red;
+    color: white;
+    width: 200px;
+    height: 40px;
+    padding-top: 7px;
+    text-align: center;
 }
