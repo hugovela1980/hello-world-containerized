@@ -50,7 +50,7 @@ const createHttpLogger = (filePath) => {
     }
   });
 
-  const httpLogger = pinoHttp({options}, fileStream);
+  const httpLogger = pinoHttp(options, fileStream);
 
   const httpLoggerCleanup = () => {
     fileStream.end();

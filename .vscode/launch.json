@@ -1,9 +1,0 @@
-{
-    "type": "node",
-    "request": "launch",
-    "name": "Debug requests.js",
-    "program": "${workspaceFolder}/server.js",
-    "skipFiles": [
-        "<node_internals>/**"
-    ]
-}

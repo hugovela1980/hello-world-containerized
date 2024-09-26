@@ -8,7 +8,7 @@ const init = async () => {
     setMode();
     helloSelectEl.focus();
 
-    const url = 'http://localhost:5000/log';
+    const url = 'http://localhost:50/log';
     const method = 'POST';
     const headers = { 'Content-Type': 'application/json' };
     const body = JSON.stringify({ message: 'Client side landing page loaded', level: 'INFO' });
@@ -20,7 +20,7 @@ const handleDropdownMenu = async () => {
         mode = helloSelectEl.value;
         setMode();
     } else {
-        const url = 'http://localhost:5000/log';
+        const url = 'http://localhost:50/log';
         const method = 'POST';
         const headers = { 'Content-Type': 'application/json' };
         const body = JSON.stringify({ message: `This is a ${helloSelectEl.value} level log message`, level: helloSelectEl.value });

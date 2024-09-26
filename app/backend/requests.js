@@ -1,13 +1,21 @@
 const path = require('path');
 const fs = require('fs');
+const config = require('config');
 const { getFileRequestData } = require('./libs/get-file-request-data');
 const { writeLogsToConsole } = require('./libs/write-logs-to-console');
-// const { writeHttpLogsToFile } = require('./libs/write-http-logs-to-file');
+const { writeHttpLogsToFile } = require('./libs/write-http-logs-to-file');
 const { requestType } = require('./libs/check-request-type');
 const { logger, httpLogger } = require('./loggerSetup');
 
+const serverInit = (url) => {
+  logger.info(config.get('app.startUpMessage').replace(/\{0}/g, url));
+  if (config.get('server.open')) {
+      logger.info('environment is set to development');
+  }
+}
+
 const handleRequests = (req, res) => {
-  // httpLogger(req, res);
+  httpLogger(req, res);
   
   if (requestType(req) === 'logging') handleLogRequests(req, res, { logger, httpLogger });
   else if (requestType(req) === 'static files') serveStaticFiles(req, res, { logger, httpLogger });
@@ -24,7 +32,7 @@ const handleLogRequests = (req, res, { logger, httpLogger }) => {
   req.on('end', () => {
     const data = JSON.parse(payload);
     writeLogsToConsole(data, logger);
-    // writeHttpLogsToFile(req, data);
+    writeHttpLogsToFile(req, data);
     res.end(JSON.stringify({ status: 'request received', msg: data.message }));
   })
 };
@@ -49,6 +57,7 @@ const serveStaticFiles = (req, res, { logger, httpLogger }) => {
 
 
 module.exports = {
+  serverInit,
   handleRequests,
   handleLogRequests,
   serveStaticFiles
