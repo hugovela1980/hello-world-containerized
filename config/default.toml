@@ -1,7 +1,6 @@
 [server]
-port = 5000
 host = "localhost"
-open = false
+port = 5000
 
 [app]
 greeting = "Hello World"

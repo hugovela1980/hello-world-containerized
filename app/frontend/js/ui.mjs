@@ -2,13 +2,16 @@ const titleTextEl = document.getElementById("title_text");
 const helloSelectEl = document.getElementById("hello_select");
 const containerEl = document.getElementById("container");
 
+const port = window.location.port || 5000;
+const host = 'localhost';
+const path = '/log';
 let mode = 'world';
 
 const init = async () => {
     setMode();
     helloSelectEl.focus();
 
-    const url = 'http://localhost:50/log';
+    const url = `http://${host}:${port}${path}`;
     const method = 'POST';
     const headers = { 'Content-Type': 'application/json' };
     const body = JSON.stringify({ message: 'Client side landing page loaded', level: 'INFO' });
@@ -20,7 +23,7 @@ const handleDropdownMenu = async () => {
         mode = helloSelectEl.value;
         setMode();
     } else {
-        const url = 'http://localhost:50/log';
+        const url = `http://${host}:${port}${path}`;
         const method = 'POST';
         const headers = { 'Content-Type': 'application/json' };
         const body = JSON.stringify({ message: `This is a ${helloSelectEl.value} level log message`, level: helloSelectEl.value });

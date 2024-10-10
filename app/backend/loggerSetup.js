@@ -3,7 +3,7 @@ const { createLogger, createHttpLogger } = require('./libs/create-loggers');
 
 const { logger, loggerCleanup } = createLogger();
 
-const httpLogPath = path.join(__dirname, 'logs', 'http.log');
+const httpLogPath = path.join(__dirname, process.env.LOGGING_URL);
 const { httpLogger, httpLoggerCleanup } = createHttpLogger(httpLogPath);
 
 module.exports = {

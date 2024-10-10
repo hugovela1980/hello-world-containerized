@@ -2,8 +2,34 @@ const fs = require('fs');
 const requestHandling = require('../app/backend/requests');
 const requestData = require('../app/backend/libs/get-file-request-data');
 
-jest.mock('fs');
 jest.mock('path');
+jest.mock('fs');
+jest.mock('config', () => ({
+    get: jest.fn((key) => {
+      if (key === 'app.startUpMessage') return 'Server started at {0}';
+      if (key === 'server.open') return true;
+      // Add other config values as needed
+    })
+}));
+jest.mock('pino', () => {
+    const mockPino = jest.fn(() => ({
+      info: jest.fn(),
+      error: jest.fn(),
+      trace: jest.fn(),
+      custom: jest.fn()
+    }));
+  
+    mockPino.transport = jest.fn(() => ({ end: jest.fn() }));
+    mockPino.stdTimeFunctions = { isoTime: jest.fn() };
+  
+    return mockPino;
+});
+jest.mock('pino-http', () => {
+    return jest.fn(() => ({
+        logger: { info: jest.fn(), error: jest.fn() },
+        end: jest.fn()
+    }));
+});
 jest.mock('../app/backend/libs/get-file-request-data');
 jest.mock('../app/backend/libs/write-logs-to-console');
 

@@ -5,8 +5,8 @@
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
-    "start": "node server.js",
-    "dev": "nodemon --env-file .env -L server.js -e js,html"
+    "start": "node --env-file .env server.js",
+    "dev": "nodemon --env-file .env server.js -L -e js,html"
   },
   "keywords": [],
   "author": "",

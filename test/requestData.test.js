@@ -5,12 +5,12 @@ const { getMimeType } = require('../app/backend/libs/get-mime-type');
 describe('getFileRequestData', () => {
     const basePath = path.join(__dirname, '..', 'app', 'frontend');
     const requestInfo = [
-        { url: '/', basePath, fileName: 'index.html', filePath: basePath + '/index.html', mimeType: 'text/html' },
-        { url: '/css/style.css', basePath, fileName: 'style.css', filePath: basePath + '/css/style.css', mimeType: 'text/css' },
-        { url: '/js/index.js', basePath, fileName: 'index.js', filePath: basePath + '/js/index.js', mimeType: 'text/javascript' },
-        { url: '/js/index.mjs', basePath, fileName: 'index.mjs', filePath: basePath + '/js/index.mjs', mimeType: 'text/javascript' },
-        { url: '/img/moon.jpg', basePath, fileName: 'moon.jpg', filePath: basePath + '/img/moon.jpg', mimeType: 'image/jpeg' },
-        { url: '/favicon.ico', basePath, fileName: 'favicon.ico', filePath: basePath + '/favicon.ico', mimeType: 'image/x-icon' }
+        { url: '/', basePath, fileName: 'index.html', filePath: path.join(basePath, "index.html"), mimeType: 'text/html' },
+        { url: '/css/style.css', basePath, fileName: 'style.css', filePath: path.join(basePath, "css", "style.css"), mimeType: 'text/css' },
+        { url: '/js/index.js', basePath, fileName: 'index.js', filePath: path.join(basePath, "js", "index.js"), mimeType: 'text/javascript' },
+        { url: '/js/index.mjs', basePath, fileName: 'index.mjs', filePath: path.join(basePath, "js", "index.mjs"), mimeType: 'text/javascript' },
+        { url: '/img/moon.jpg', basePath, fileName: 'moon.jpg', filePath: path.join(basePath, "img", "moon.jpg"), mimeType: 'image/jpeg' },
+        { url: '/favicon.ico', basePath, fileName: 'favicon.ico', filePath: path.join(basePath, "favicon.ico"), mimeType: 'image/x-icon' }
     ];
     
     it.each(requestInfo)('should return fileName: $fileName, filePath: $filePath, and mimeType: $mimeType for a valid URL: $url', ({ url, basePath, fileName, filePath, mimeType }) => {

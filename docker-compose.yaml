@@ -1,9 +1,16 @@
 services:
   app:
     build: .
+    image: hugovela1980/hello-world-containerized
+    container_name: hwc-dev-cont
     volumes:
       - ./:/usr/local/app
-      - /usr/local/app/node_modules
     working_dir: /usr/local/app
     ports:
-      - "50:5000"
+      - "${HOST_PORT}:${PORT}"
+    environment:
+      - NODE_ENV=development
+      - PORT=${PORT}
+      - HOST_PORT=${HOST_PORT:-50}
+      - LOGGING_URL=${LOGGING_URL}
+

@@ -9,8 +9,10 @@ const { logger, httpLogger } = require('./loggerSetup');
 
 const serverInit = (url) => {
   logger.info(config.get('app.startUpMessage').replace(/\{0}/g, url));
-  if (config.get('server.open')) {
-      logger.info('environment is set to development');
+  if (config.get('server.environment') === 'development') {
+      logger.info('ENVIRONMENT IS SET TO DEVELOPMENT');
+  } else {
+    logger.info('ENVIRONMENT IS SET TO PRODUCTION');
   }
 }
 
@@ -54,7 +56,6 @@ const serveStaticFiles = (req, res, { logger, httpLogger }) => {
     res.end('Internal Server Error');
   });
 };
-
 
 module.exports = {
   serverInit,

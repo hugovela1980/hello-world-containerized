@@ -132,3 +132,5 @@ dist
 
 # config files
 /config/local.toml
+
+app/client_config.js
