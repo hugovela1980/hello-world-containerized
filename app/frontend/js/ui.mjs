@@ -22,6 +22,9 @@ const handleDropdownMenu = async () => {
     if (helloSelectEl.value === "world" || helloSelectEl.value === "universe") {
         mode = helloSelectEl.value;
         setMode();
+    } else if (helloSelectEl.value === "API") {
+        const url = `http://${host}:${port}/api_testing.html`;
+        window.location.href = url;
     } else {
         const url = `http://${host}:${port}${path}`;
         const method = 'POST';
