@@ -1,7 +1,7 @@
 services:
   app:
     build: .
-    image: hugovela1980/hello-world-containerized
+    image: hello-world-containerized:latest
     container_name: hwc-dev-cont
     volumes:
       - ./:/usr/local/app

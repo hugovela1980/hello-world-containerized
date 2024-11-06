@@ -6,7 +6,8 @@
     "test": "jest",
     "coverage": "jest --coverage",
     "start": "node --env-file .env server.js",
-    "dev": "nodemon --env-file .env server.js -L -e js,html"
+    "dev": "nodemon --env-file .env server.js -L -e js,mjs,html,css",
+    "devvv": "nodemon server_practice.js -L -e js,mjs,html,css"
   },
   "keywords": [],
   "author": "",

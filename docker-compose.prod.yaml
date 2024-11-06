@@ -3,10 +3,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.prod
-    image: hugovela1980/hello-world-containerized:5.0
+    image: hugovela1980/hello-world-containerized:6.0
     container_name: hwc-prod-cont
-    volumes:
-      - ./:/usr/local/app
     working_dir: /usr/local/app
     ports:
       - "${HOST_PORT}:${PORT}"

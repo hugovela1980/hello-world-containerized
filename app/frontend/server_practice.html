@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Practice</title>
+    <style>
+        img {
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image</h1>
+    <button id="upload">UPLOAD</button>
+    
+    <script>
+        document.getElementById('upload').addEventListener('click', async (e) => {
+            const response = await fetch('http://localhost:1234/upload');
+            console.log(response);
+            const blob = await response.blob();
+            const url = URL.createObjectURL(blob);
+            const img = document.createElement('img');
+            img.src = url;
+            document.body.appendChild(img);
+        });
+    </script>
+</body>
+</html>

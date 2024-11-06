@@ -6,6 +6,7 @@ const port = window.location.port || 5000;
 const host = 'localhost';
 const path = '/log';
 let mode = 'world';
+console.log(`http://${host}:${port}${path}`);
 
 const init = async () => {
     setMode();
@@ -22,15 +23,15 @@ const handleDropdownMenu = async () => {
     if (helloSelectEl.value === "world" || helloSelectEl.value === "universe") {
         mode = helloSelectEl.value;
         setMode();
-    } else if (helloSelectEl.value === "API") {
-        const url = `http://${host}:${port}/api_testing.html`;
+    } else if (helloSelectEl.value === "UPLOAD") {
+        const url = `http://${host}:${port}/file-upload.html`;
         window.location.href = url;
     } else {
         const url = `http://${host}:${port}${path}`;
         const method = 'POST';
         const headers = { 'Content-Type': 'application/json' };
         const body = JSON.stringify({ message: `This is a ${helloSelectEl.value} level log message`, level: helloSelectEl.value });
-        makeHttpRequest({  url, method, headers, body });;
+        console.log(await makeHttpRequest({  url, method, headers, body }));
     }
 };
 
@@ -48,7 +49,8 @@ const setMode = () => {
 
 const makeHttpRequest = async ({ url, method, headers, body }) => {
     const response = await fetch(url, { method, headers, body });
-    return console.log(await response.json());
+    const data = await response.json();
+    return data;
 }
 
 export { init, handleDropdownMenu };
