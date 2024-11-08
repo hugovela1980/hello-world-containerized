@@ -5,9 +5,12 @@
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
-    "start": "node --env-file .env server.js",
-    "dev": "nodemon --env-file .env server.js -L -e js,mjs,html,css",
-    "devvv": "nodemon server_practice.js -L -e js,mjs,html,css"
+    "prod_cont": "cross-env NODE_ENV=container powershell -ExecutionPolicy Bypass -File ./run-docker.ps1",
+    "start": "node --env-file .env server.js -L -e js,mjs,html,css,toml",
+    "dev_cont": "cross-env NODE_ENV=container powershell -ExecutionPolicy Bypass -File ./run-docker.ps1",
+    "dev": "nodemon --env-file .env server.js -L -e js,mjs,html,css,toml",
+    "local_dev": "cross-env NODE_ENV=development nodemon --env-file .env server.js -L -e js,mjs,html,css,toml",
+    "stop": "docker-compose down"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +26,7 @@
     "toml": "^3.0.0"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "jest": "^29.7.0",
     "nodemon": "^3.1.4"
   }

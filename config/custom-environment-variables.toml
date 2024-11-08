@@ -1,0 +1,5 @@
+[server]
+hostPort = "HOST_PORT"
+
+[app]
+greeting = "WELCOME_MESSAGE"

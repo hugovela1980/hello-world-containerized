@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
+const config = require('config');
 const { httpLogger, logger } = require('../setup/loggerSetup');
+const getRootDirectory = require('../libs/get-root-directory');
 const getFileFromMultiPartFormData = require('../libs/get-file-from-multi-part-form-data');
 const saveFileToFileSystem = require('../libs/save-file-to-file-system');
 const { serveUploadedFileNames, getFileNames } = require('./fileService');
@@ -8,7 +10,7 @@ const { serveUploadedFileNames, getFileNames } = require('./fileService');
 const uploadFiles = ({ headers, buffer }, res) => {
   const files = getFileFromMultiPartFormData(headers, buffer);
 
-  const uploadDirr = path.join(__dirname, '..', 'uploads');
+  const uploadDirr = path.join(getRootDirectory(__dirname), config.get('server.uploadDir'));
   if (!fs.existsSync(uploadDirr)) fs.mkdirSync(uploadDirr);
   
   files.forEach(file => {

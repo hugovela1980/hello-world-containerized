@@ -1,7 +1,9 @@
 [server]
-host = "localhost"
 port = 5000
+host = "localhost"
+hostIP = "0.0.0.0"
+logFilePath = "app/backend/logs/http.log"
+uploadDir = "app/backend/uploads"
 
 [app]
-greeting = "Hello World"
 startUpMessage = "Server started and listening on {0}"
