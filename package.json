@@ -5,9 +5,11 @@
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
-    "prod_cont": "cross-env NODE_ENV=container powershell -ExecutionPolicy Bypass -File ./run-docker.ps1",
+    "prod_cont": "cross-env NODE_ENV=production powershell -ExecutionPolicy Bypass -File ./run-docker-powershell.ps1",
+    "prod_cont_bash": "cross-env NODE_ENV=production ./run-docker-bash.sh",
     "start": "node --env-file .env server.js -L -e js,mjs,html,css,toml",
-    "dev_cont": "cross-env NODE_ENV=container powershell -ExecutionPolicy Bypass -File ./run-docker.ps1",
+    "dev_cont": "cross-env NODE_ENV=container powershell -ExecutionPolicy Bypass -File ./run-docker-powershell.ps1",
+    "dev_cont_bash": "cross-env NODE_ENV=container ./run-docker-bash.sh",
     "dev": "nodemon --env-file .env server.js -L -e js,mjs,html,css,toml",
     "local_dev": "cross-env NODE_ENV=development nodemon --env-file .env server.js -L -e js,mjs,html,css,toml",
     "stop": "docker-compose down"

@@ -5,8 +5,7 @@ const { httpLogger, logger } = require('./app/backend/setup/loggerSetup');
 const processRequestObject = require('./app/backend/controllers/requestController');
 const routes = require('./app/backend/controllers/routeController');
 
-console.log(process.env.NODE_ENV);
-console.log(config);
+console.log({ environment: process.env.NODE_ENV, config });
 
 // Greeting
 logger.info(config.get('app.greeting'));
